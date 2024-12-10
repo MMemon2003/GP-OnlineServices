@@ -306,55 +306,47 @@ function generateYearlyReport() {
             document.getElementById("indexSection").style.display = "block";
             return false; // Prevent form submission
         }
+				
+// Supabase initialization
+        const supabaseUrl = 'https://fhnljifzvmduabsyrkbo.supabase.co';
+        const supabaseKey = '<eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZobmxqaWZ6dm1kdWFic3lya2JvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzM4NzAxMjAsImV4cCI6MjA0OTQ0NjEyMH0.caX-0O_20MB770MaGLd_Uel9B9Um_8EKG5uwAT0X7-4>';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-document.getElementById('loginForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
+        // Doctor Registration
+        document.getElementById('doctorForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('doctorName').value;
+            const email = document.getElementById('doctorEmail').value;
+            const specialty = document.getElementById('specialty').value;
 
-    const patientName = document.getElementById('patientName').value;
-    const medicalID = document.getElementById('medicalID').value;
-    const patientPassword = document.getElementById('patientPassword').value;
+            const { data, error } = await supabase.from('doctors').insert([{ name, email, specialty }]);
+            if (error) {
+                alert('Error: ' + error.message);
+            } else {
+                alert('Doctor registered successfully!');
+            }
+        });
 
-    const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ patientName, medicalID, patientPassword }),
-    });
+        // Patient Registration
+        document.getElementById('patientForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('patientName').value;
+            const email = document.getElementById('patientEmail').value;
+            const doctor_id = parseInt(document.getElementById('doctorId').value);
 
-    const responseData = await response.json();
+            const { data, error } = await supabase.from('patients').insert([{ name, email, doctor_id }]);
+            if (error) {
+                alert('Error: ' + error.message);
+            } else {
+                alert('Patient registered successfully!');
+            }
+        });
 
-    const responseMessage = document.getElementById('responseMessage');
-    if (response.ok) {
-        responseMessage.textContent = responseData.message;
-        responseMessage.style.color = 'green';
-    } else {
-        responseMessage.textContent = responseData.message;
-        responseMessage.style.color = 'red';
-    }
-});
 
-fetch('https://gp-onlineservices-080c57ef7c1d.herokuapp.com/', {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    // Add any other necessary headers here
-  },
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
-	
-fetch('https://gp-onlineservices-080c57ef7c1d.herokuapp.com/', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ key: 'value' }), // Include body only for POST/PUT
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
+
+
+
+
 
 
 

@@ -47,12 +47,12 @@
         </div>
     </div>
 
-<!-- Doctor Registration Form -->
+ <!-- Doctor Registration Form -->
     <form id="doctorForm">
         <h2>Register Doctor</h2>
         <input type="text" id="doctorName" placeholder="Doctor Name" required>
-        <input type="text" id="doctorID" placeholder="Doctor ID" required>
-        <input type="number" id="Password" placeholder="Doctor Password" required>
+        <input type="email" id="doctorEmail" placeholder="Doctor Email" required>
+        <input type="text" id="specialty" placeholder="Specialty" required>
         <button type="submit">Register Doctor</button>
     </form>
 
@@ -60,11 +60,14 @@
     <form id="patientForm">
         <h2>Register Patient</h2>
         <input type="text" id="patientName" placeholder="Patient Name" required>
-        <input type="text" id="patientID" placeholder="Patient ID" required>
-        <input type="number" id="Password" placeholder="Patient Password" required>
+        <input type="email" id="patientEmail" placeholder="Patient Email" required>
+        <input type="number" id="doctorId" placeholder="Doctor ID" required>
         <button type="submit">Register Patient</button>
     </form>
 
+    <!-- Hidden anchor links for redirection -->
+    <a id="doctorRedirect" href="GP Virtual System.html" style="display:none;"></a>
+    <a id="patientRedirect" href="GP Virtual System.html" style="display:none;"></a>
 
 <!-- Footer -->
 <footer class="footer bg-dark text-white">

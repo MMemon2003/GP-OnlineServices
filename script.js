@@ -310,7 +310,7 @@ function generateYearlyReport() {
 // Supabase initialization
         const supabaseUrl = 'https://fhnljifzvmduabsyrkbo.supabase.co';
         const supabaseKey = '<eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZobmxqaWZ6dm1kdWFic3lya2JvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzM4NzAxMjAsImV4cCI6MjA0OTQ0NjEyMH0.caX-0O_20MB770MaGLd_Uel9B9Um_8EKG5uwAT0X7-4>';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         // Doctor Registration
         document.getElementById('doctorForm').addEventListener('submit', async (e) => {
@@ -324,6 +324,7 @@ function generateYearlyReport() {
                 alert('Error: ' + error.message);
             } else {
                 alert('Doctor registered successfully!');
+                window.location.href = 'GP Virtual System.html';
             }
         });
 
@@ -339,6 +340,7 @@ function generateYearlyReport() {
                 alert('Error: ' + error.message);
             } else {
                 alert('Patient registered successfully!');
+                window.location.href = 'GP Virtual System.html';
             }
         });
 

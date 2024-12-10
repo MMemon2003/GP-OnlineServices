@@ -324,7 +324,7 @@ function generateYearlyReport() {
                 alert('Error: ' + error.message);
             } else {
                 alert('Doctor registered successfully!');
-                window.location.href = 'GP Virtual System.html';
+                window.location.href = 'gp virtual system.html';
             }
         });
 
@@ -340,7 +340,7 @@ function generateYearlyReport() {
                 alert('Error: ' + error.message);
             } else {
                 alert('Patient registered successfully!');
-                window.location.href = 'GP Virtual System.html';
+                window.location.href = 'gp virtual system.html';
             }
         });
 

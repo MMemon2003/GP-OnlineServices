@@ -47,27 +47,25 @@
         </div>
     </div>
 
- <!-- Doctor Registration Form -->
-    <form id="doctorForm">
-        <h2>Register Doctor</h2>
+    <!-- Doctor Registration Form -->
+    <form id="doctorForm" style="display: none;">
         <input type="text" id="doctorName" placeholder="Doctor Name" required>
-        <input type="email" id="doctorID" placeholder="Doctor ID" required>
-        <input type="number" id="doctorpassword" placeholder="Password" required>
-        <button type="submit">Register Doctor</button>
+        <input type="text" id="doctorId" placeholder="Doctor ID" required>
+        <input type="password" id="doctorPassword" placeholder="Password" required>
+        <button type="submit">Sign in as a Doctor</button>
     </form>
 
     <!-- Patient Registration Form -->
-    <form id="patientForm">
-        <h2>Register Patient</h2>
+    <form id="patientForm" style="display: none;">
         <input type="text" id="patientName" placeholder="Patient Name" required>
-        <input type="text" id="PatientID" placeholder="Patient ID" required>
-        <input type="number" id="Patient password" placeholder="Password" required>
-        <button type="submit">Register Patient</button>
+        <input type="text" id="patientId" placeholder="Patient ID" required>
+        <input type="password" id="patientPassword" placeholder="Password" required>
+        <button type="submit">Sign in as a Patient</button>
     </form>
 
-    <!-- Hidden anchor links for redirection -->
-    <a id="doctorRedirect" href="GP Virtual System.html" style="display:none;"></a>
-    <a id="patientRedirect" href="GP Virtual System.html" style="display:none;"></a>
+    <!-- Error Message -->
+    <p id="errorMessage" style="color: red; display: none;">Wrong details. Please register.</p>
+</div>
 
 <!-- Footer -->
 <footer class="footer bg-dark text-white">
@@ -92,6 +90,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 
 </body>
 </html>

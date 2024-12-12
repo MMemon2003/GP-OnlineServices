@@ -306,44 +306,53 @@ function generateYearlyReport() {
             document.getElementById("indexSection").style.display = "block";
             return false; // Prevent form submission
         }
-				
-// Supabase initialization
-        const supabaseUrl = 'https://fhnljifzvmduabsyrkbo.supabase.co';
-        const supabaseKey = '<eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZobmxqaWZ6dm1kdWFic3lya2JvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzM4NzAxMjAsImV4cCI6MjA0OTQ0NjEyMH0.caX-0O_20MB770MaGLd_Uel9B9Um_8EKG5uwAT0X7-4>';
- const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-        // Doctor Registration
-        document.getElementById('doctorForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('doctorName').value;
-            const email = document.getElementById('doctorEmail').value;
-            const specialty = document.getElementById('specialty').value;
+// Supabase initialization (replace with your actual details)
+    const supabaseUrl = 'https://fhnljifzvmduabsyrkbo.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZobmxqaWZ6dm1kdWFic3lya2JvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzM4NzAxMjAsImV4cCI6MjA0OTQ0NjEyMH0.caX-0O_20MB770MaGLd_Uel9B9Um_8EKG5uwAT0X7-4'; // Replace with your key
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
-            const { data, error } = await supabase.from('doctors').insert([{ name, email, specialty }]);
-            if (error) {
-                alert('Error: ' + error.message);
-            } else {
-                alert('Doctor registered successfully!');
-                window.location.href = 'gp virtual system.html';
-            }
-        });
+    // Doctor Login
+document.getElementById('doctorForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    console.log("Form Submitted!"); // Check if this is logged
+    const doctorname = document.getElementById('doctorName').value;
+    const doctorId = document.getElementById('doctorId').value;
+    const doctorPassword = document.getElementById('doctorPassword').value;
+    console.log("Doctor Name: ", doctorname);  // Check if name is retrieved correctly
+  
+  const { data, error } = await supabase.from('Registered Doctors').select('name,id, password').eq('name', doctorname).eq('id', doctorId).eq('password', doctorPassword).single();
+console.log("Error: ", error); // Check if error is returned
+console.log("Data: ", data);  // Check if data is fetched correctly
 
-        // Patient Registration
-        document.getElementById('patientForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('patientName').value;
-            const email = document.getElementById('patientEmail').value;
-            const doctor_id = parseInt(document.getElementById('doctorId').value);
+  if (error || !data) {
+    document.getElementById('errorMessage').style.display = 'block';
+} else {
+    console.log("Login Successful!");
+    window.location.href = 'gp virtual system.html';
+}
 
-            const { data, error } = await supabase.from('patients').insert([{ name, email, doctor_id }]);
-            if (error) {
-                alert('Error: ' + error.message);
-            } else {
-                alert('Patient registered successfully!');
-                window.location.href = 'gp virtual system.html';
-            }
-        });
+});
 
+ document.getElementById('patientForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    console.log("Form Submitted!"); // Check if this is logged
+    const patientname = document.getElementById('patientName').value;
+    const patientId = document.getElementById('patientId').value;
+    const patientPassword = document.getElementById('patientPassword').value;
+
+    // Fetch patient details from Supabase
+    const { data, error } = await supabase.from('Registered Patients').select('name,id, password').eq('name', patientname).eq('id', patientId).eq('password', patientPassword).single();
+    
+    if (error || !data) {
+        // Show error message if details don't match
+        document.getElementById('errorMessage').style.display = 'block';
+    } else {
+        console.log("Login successful!"); // Check if this is logged
+        window.location.replace('gp virtual system.html');
+
+    }
+});
 
 
 

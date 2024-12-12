@@ -329,7 +329,7 @@ console.log("Data: ", data);  // Check if data is fetched correctly
     document.getElementById('errorMessage').style.display = 'block';
 } else {
     console.log("Login Successful!");
-    window.location.href = 'gp virtual system.html';
+    window.location.href = 'GP Virtual System.html';
 }
 
 });
@@ -349,7 +349,7 @@ console.log("Data: ", data);  // Check if data is fetched correctly
         document.getElementById('errorMessage').style.display = 'block';
     } else {
         console.log("Login successful!"); // Check if this is logged
-        window.location.replace('gp virtual system.html');
+        window.location.replace('GP Virtual System.html');
 
     }
 });
